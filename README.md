@@ -38,6 +38,9 @@ Update: Program parses bookmarks exported using del.icio.us api
    ```
       java -jar deliciousparser-1.0-jar-with-dependencies.jar /path/to/exported/html /path/to/directory/for/output
 
+4. Import the JSON data inside the file into Chrome bookmarks using the chrome extension [import-bookmarks-to-chrome](https://github.com/mikematic/import-bookmarks-to-chrome).
+
+
 ### Parsing bookmarks downloaded directly using wget
 1. Download bookmarks from delicious server
 
@@ -55,7 +58,7 @@ Update: Program parses bookmarks exported using del.icio.us api
    ```
       java -jar deliciousparser-1.0-jar-with-dependencies.jar /path/to/downloaded/htmls /path/to/directory/for/output
    ```
-5. Import the JSON data inside the file into Chrome bookmarks using the chrome extension [import-bookmarks-to-chrome](https://github.com/mikematic/import-bookmarks-to-chrome).
+4. Import the JSON data inside the file into Chrome bookmarks using the chrome extension [import-bookmarks-to-chrome](https://github.com/mikematic/import-bookmarks-to-chrome).
 
 ### Contributions
 Stick a fork at it
