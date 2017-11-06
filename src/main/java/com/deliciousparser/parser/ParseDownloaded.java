@@ -1,8 +1,6 @@
-package com.deliciousparser;
+package com.deliciousparser.parser;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.util.Collection;
 import java.util.Iterator;
@@ -18,56 +16,12 @@ import org.jsoup.select.Elements;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class ParseHTMLs {
+public class ParseDownloaded extends AbstractParser{
 	
-	private static Collection<File> getFiles(File directory, FilenameFilter filter, Collection<String> extensions) {
-		// List of files
-		Collection<File> fileList = new Vector<File>();
-		// Get a list of all files&directories in the directory
-		File[] files = directory.listFiles();
-		if (files == null) {
-			System.out.println("FileUtility: Directory: " + directory + " not found!");
-			return null;
-		}
-		// Process each file/directory accordingly
-		for (File file : files) {
-			if (file.isDirectory()) {
-				// Recursively operate on the folder
-				fileList.addAll(getFiles(file, filter, extensions));
-			} else {
-				// Apply filter and add to vector if it passes
-				if (filter == null || filter.accept(file, file.getName())) {
-					String fileName = file.getName();
-					String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
-					if (filter == null || extensions.contains(fileExtension.toUpperCase()))
-						fileList.add(file);
-				}
-			}
-		}
-		return fileList;
-
-	}
-	
-	private static boolean isBookmarkInArr(JSONObject bookmarkObj, JSONArray bookmarksArr) {
-		boolean result = false;
-		JSONObject currObj;
-		Iterator<JSONObject> iter = bookmarksArr.iterator();
-		while (iter.hasNext()) {
-			currObj = iter.next();
-			if (currObj.get("title").toString().equalsIgnoreCase(bookmarkObj.get("title").toString())
-					&& currObj.get("url").toString().equalsIgnoreCase(bookmarkObj.get("url").toString())) {
-				System.out.println("Duplicate URL: " + currObj.get("url").toString() + " Skipping...");
-				result = true;
-				break;
-			}
-		}
-		return result;
-	}
-	
-	public static String convertDeliciousDownloads(String directory){
+	public String convertToJson(File inputFile){
 		String bookmarksJson = "";
 		int index = 1;
-		Collection<File> fileList = getFiles(new File(directory), null, null);
+		Collection<File> fileList = getFiles(inputFile, null, null);
 		JSONArray bookmarksArr = new JSONArray();
 		
 		for (File file : fileList) {
@@ -127,25 +81,6 @@ public class ParseHTMLs {
 		}
 		System.out.println("JSONArray created for " + bookmarksArr.size() + " unique bookmarks\n");
 		return bookmarksJson;
-	}
-	
-	public static void main(String[] args)throws Exception{
-		if(args.length != 2){
-			System.out.println("\nIncorrect parameters. Please check the usage of program.");
-			System.out.println("Usage: java -jar deilciousparser.jar <download directory path> <output directory path>");
-			System.out.println("       <download directory path>: path to the folder where htmls are downloaded from delicious server");
-			System.out.println("       <output directory path>: path to the folder where JSON formated bookmarks is saved.\n");
-		}
-		else{
-			String downloadDir = args[0].toString();
-			String outputDir = args[1].toString();
-			BufferedWriter bw = new BufferedWriter(new FileWriter(new File(outputDir + "/mybookmarks.json")));
-			bw.write(convertDeliciousDownloads(downloadDir));
-			bw.close();
-			System.out.println("JSONArray output to file: " + outputDir + "/mybookmarks.json\n");
-			System.out.println("Program has finished. Please review output file and import it to Chromebookmarks using extension import-delicious-bookmarks\n");
-		}
-				
 	}
 
 }

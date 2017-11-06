@@ -1,8 +1,8 @@
-#deliciousparser
+# deliciousparser
 
 Program that parses bulk HTMLs downloaded from [del.icio.us bookmark server](https://del.icio.us/) and outputs them into one clean JSON formatted file. This JSON can be imported into Chrome bookmarks using the chrome extension [import-bookmarks-to-chrome](https://github.com/mikematic/import-bookmarks-to-chrome).
 
-###Packaging
+### Packaging
 
 1. Download or Clone this repository
 
