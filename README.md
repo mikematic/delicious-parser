@@ -9,7 +9,7 @@ Update: Program parses bookmarks exported using del.icio.us api
 1. Download or Clone this repository
 
   ```
-  git clone https://github.com/mikematic/deliciousparser.git
+  git clone https://github.com/mikematic/delicious-parser.git
   ```
 
 2. Package repository to create your runnable jar
@@ -20,7 +20,7 @@ Update: Program parses bookmarks exported using del.icio.us api
 
 3. Runnable jar packaged with its dependencies will be located in the target folder inside the home directory of project
    ```
-   $[delicious parser HOME]/target/deliciousparser-1.0-jar-with-dependencies.jar
+   $[delicious parser HOME]/target/delicious-parser-1.0-jar-with-dependencies.jar
    ```
 
 ## Using
@@ -36,7 +36,7 @@ Update: Program parses bookmarks exported using del.icio.us api
 3. Parse the exported html by running the jar in the target folder
 
    ```
-      java -jar deliciousparser-1.0-jar-with-dependencies.jar /path/to/exported/html /path/to/directory/for/output
+      java -jar delicious-parser-1.0-jar-with-dependencies.jar /path/to/exported/html /path/to/directory/for/output
 
 4. Import the JSON data inside the file into Chrome bookmarks using the chrome extension [import-bookmarks-to-chrome](https://github.com/mikematic/import-bookmarks-to-chrome).
 
@@ -56,7 +56,7 @@ Update: Program parses bookmarks exported using del.icio.us api
 3. Parse the downloaded htmls by running the jar in the target folder
 
    ```
-      java -jar deliciousparser-1.0-jar-with-dependencies.jar /path/to/downloaded/htmls /path/to/directory/for/output
+      java -jar delicious-parser-1.0-jar-with-dependencies.jar /path/to/downloaded/htmls /path/to/directory/for/output
    ```
 4. Import the JSON data inside the file into Chrome bookmarks using the chrome extension [import-bookmarks-to-chrome](https://github.com/mikematic/import-bookmarks-to-chrome).
 
